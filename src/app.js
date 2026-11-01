@@ -7,7 +7,7 @@ import {resizeGroup,deleteSelection,deletionScope} from './diagrams/node-edge.js
 import {translatePath} from './diagrams/spectrum.js';
 import {pickSave,writeBlob,pngBlob,safeStem} from './io.js';
 import {migrateLegacy,extractInitial} from './migrate.js';
-const $=id=>document.getElementById(id),session=new Session();
+const $=id=>document.getElementById(id),session=new Session(),fieldDrafts=new Map();
 const typeNames={elements:'図形',groups:'グループ',labels:'ラベル',connections:'接続',paths:'パス',regions:'領域'};
 let epoch=0,documentSerial=0,saving=false,composing=false,drag=null;
 const variant=(d=session.doc)=>d?.variants.find(v=>v.id===d.selected_variant_id);
@@ -15,9 +15,16 @@ const scene=(d=session.doc)=>variant(d)?.current;
 const cats=()=>session.doc?categories(session.doc.diagram_kind):[];
 const find=(id=session.selected,d=session.doc)=>d?categories(d.diagram_kind).flatMap(k=>scene(d)[k]).find(o=>o.id===id):null;
 const kind=()=>cats().find(k=>scene()[k].some(o=>o.id===session.selected));
-const invalid=()=>!!$('editor').querySelector('[aria-invalid="true"]');
+const fieldKey=id=>JSON.stringify([session.doc.selected_variant_id,session.selected,id]);
+const invalid=()=>fieldDrafts.size>0;
 const hasUnsaved=()=>session.dirty||invalid()||composing;
 const status=message=>{$('status').textContent=message;};
+function pruneDrafts(){
+ for(const [key,field]of fieldDrafts){
+  const current=session.doc?.variants.find(v=>v.id===field.variantId)?.current;
+  if(!current||!cats().some(k=>current[k].some(o=>o.id===field.objectId)))fieldDrafts.delete(key);
+ }
+}
 function buttons(){
  const on=!!session.doc;
  for(const id of ['reset','variant'])$(id).disabled=!on||!!drag;
@@ -64,8 +71,8 @@ function colorForm(o,k){
 }
 function form(){
  const o=find(),k=kind();$('editor').classList.toggle('hidden',!o);
- if(!o){$('delete-hint').textContent=session.doc?'要素がありません。リセットで復元できます。':'';return;}
  for(const control of $('editor').querySelectorAll('[aria-invalid]'))control.removeAttribute('aria-invalid');
+ if(!o){$('delete-hint').textContent=session.doc?'要素がありません。リセットで復元できます。':'';return;}
  const removed=session.doc.diagram_kind==='node-edge'?[...deletionScope(scene(),o.id)]:[o.id];
  $('delete-hint').textContent='削除予定 '+removed.length+'件: '+removed.join(', ');
  for(const [id,on]of [['position',!['connections','paths'].includes(k)],['dimensions',['elements','groups','regions'].includes(k)],['label-fields',k==='labels'],['point-fields',['connections','paths'].includes(k)]]){
@@ -73,9 +80,10 @@ function form(){
  }
  for(const id of ['x','y','width','height','fontSize'])$(id).value=displayNumber(o[id]??1);
  $('text').value=o.text??'';$('points').value=displayPoints(o.points??o.waypoints??[]);$('point-title').textContent=k==='connections'?'経由点 (各行 X, Y)':'端点・全制御点 (各行 X, Y)';colorForm(o,k);
+ for(const field of fieldDrafts.values())if(field.variantId===session.doc.selected_variant_id&&field.objectId===session.selected){$(field.id).value=field.value;$(field.id).setAttribute('aria-invalid','true');}
 }
 function refresh(){
- session.endField();options();render();form();buttons();
+ session.endField();pruneDrafts();options();render();form();buttons();
  if(session.doc){const d=session.doc,c=d.coordinate_system;$('identity').textContent=d.figure_id+' / '+d.base_revision+' / '+d.diagram_kind+' / 形式v2';$('coordinates').textContent=`左上原点、右向きX・下向きY。${c.width} × ${c.height} draft-unit。PNGは縦横2倍。`;}
 }
 function reflect(e){
@@ -91,8 +99,8 @@ function reflect(e){
     const value=enteredNumber(control.value,o[id]);resizeGroup(scene(d),o.id,id==='width'?value:o.width,id==='height'?value:o.height);
    }else o[id]=enteredNumber(control.value,o[id]);
   },session.selected+':'+id);
-  control.removeAttribute('aria-invalid');render();buttons();status(invalid()?'有効な変更を反映しました。入力途中の項目は図・JSONに未反映です。':'編集を反映しました。');
- }catch(error){control.setAttribute('aria-invalid','true');buttons();status('入力途中: '+error.message+'。図・JSONは最後の有効値を保持します。');}
+  fieldDrafts.delete(fieldKey(id));control.removeAttribute('aria-invalid');render();buttons();status(invalid()?'有効な変更を反映しました。入力途中の項目は図・JSONに未反映です。':'編集を反映しました。');
+ }catch(error){fieldDrafts.set(fieldKey(id),{variantId:session.doc.selected_variant_id,objectId:session.selected,id,value:control.value});control.setAttribute('aria-invalid','true');buttons();status('入力途中: '+error.message+'。図・JSONは最後の有効値を保持します。');}
 }
 $('editor').onsubmit=e=>e.preventDefault();$('editor').addEventListener('input',reflect);
 $('editor').addEventListener('compositionstart',()=>{composing=true;epoch++;buttons();});
@@ -104,7 +112,11 @@ $('editor').addEventListener('focusout',e=>{
 });
 $('selection').onchange=()=>{epoch++;session.endField();session.selected=$('selection').value;render();form();buttons();};
 $('variant').onchange=()=>{epoch++;session.switchVariant($('variant').value);refresh();};
-for(const action of ['undo','redo','reset'])$(action).onclick=()=>{if(drag)return;epoch++;session[action]();refresh();status(action==='reset'?'選択案をリセットしました。':'履歴を反映しました。');};
+for(const action of ['undo','redo','reset'])$(action).onclick=()=>{
+ if(drag)return;epoch++;session[action]();
+ if(action==='reset')for(const [key,field]of fieldDrafts)if(field.variantId===session.doc.selected_variant_id)fieldDrafts.delete(key);
+ refresh();status(action==='reset'?'選択案をリセットしました。':'履歴を反映しました。');
+};
 $('delete').onclick=()=>{
  if(!find()||drag)return;epoch++;
  session.edit(d=>{if(d.diagram_kind==='node-edge')deleteSelection(scene(d),session.selected,variant(d).initial);else{const k=kind();scene(d)[k]=scene(d)[k].filter(o=>o.id!==session.selected);}});refresh();status('依存範囲を含めて削除しました。戻るで復元できます。');
@@ -150,7 +162,7 @@ async function readInput(input,mode){
   const adopt=await allowDiscard();
   if(!adopt){status('読込をキャンセルしました。現在の編集をJSON保存できます。');return;}
   if(!session.isCurrent(token)||epoch!==startEpoch){status('古い読込結果は採用しませんでした。');return;}
-  if(mode==='restore')session.restore(candidate);else{session.open(candidate);documentSerial++;}epoch++;refresh();status(mode==='restore'?'全案の保存状態を1履歴で復元しました。':'新しい図を開きました。');
+  if(mode==='restore')session.restore(candidate);else{session.open(candidate);documentSerial++;}fieldDrafts.clear();epoch++;refresh();status(mode==='restore'?'全案の保存状態を1履歴で復元しました。':'新しい図を開きました。');
  }catch(error){status('読込失敗: '+error.message+'。現在の編集と入力を保持しています。');}
 }
 $('open').onchange=()=>readInput($('open'),'open');$('restore').onchange=()=>readInput($('restore'),'restore');
