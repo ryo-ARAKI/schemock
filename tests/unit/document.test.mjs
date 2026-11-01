@@ -49,5 +49,11 @@ test('migration rejects a base with mismatched variant titles',()=>{
  const old=read('fixtures/legacy-v1/node-edge-needs-base.json'),base=read('fixtures/legacy-v1/node-edge.json');base.variants[0].title='different';assert.throws(()=>migrateLegacy(old,'node-edge',base),/title/);
 });
 test('fixed invalid fixtures report the expected path and preserve the input',()=>{
- for(const c of read('fixtures/invalid/cases.json')){const d=read('fixtures/invalid/'+c.file),before=structuredClone(d);assert.throws(()=>validateDocument(d),e=>e.message.startsWith(c.reason_path+':'));assert.deepEqual(d,before);}
+ for(const c of read('fixtures/invalid/cases.json')){
+  const d=read('fixtures/invalid/'+c.file),before=structuredClone(d);
+  assert.throws(()=>validateDocument(d),e=>e.message.startsWith(c.reason_path+':'));assert.deepEqual(d,before);
+  if(c.file.includes('unknown-field'))delete d.variants[0].current.labels[0].unexpected;
+  else d.variants[0].current.labels.splice(1,1);
+  assert.doesNotThrow(()=>validateDocument(d),'fixture must have only the stated defect: '+c.file);
+ }
 });
