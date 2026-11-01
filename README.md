@@ -1,27 +1,33 @@
 # Schemock
 
-One offline editor, separate diagram JSON. Adjust scientific composition drafts in desktop Google Chrome, then manually exchange the JSON with your agent and produce editable Typst from the adopted result.
-The first release supports node/edge diagrams and qualitative spectra/profiles. Scientific meaning, structural changes and final typesetting belong to the person and agent.
+オフラインで使えるエディタと、独立した図のJSONファイル。
+デスクトップ版Google Chromeで科学的な図の構図を調整し、JSONをエージェントと手動でやり取りして、採用した結果から編集可能なTypstを生成します。
+初回リリースでは、ノード・エッジ図と定性的なスペクトル・プロファイルに対応します。
+科学的な意味の判断、構造の変更、最終的な組版は人とエージェントが担当します。
 
-## Candidate 0.1.0 / format 2
+## リリース候補 0.1.0 / フォーマット 2
 
-This checkout contains an unpublished release candidate. Publication and the downstream skill switch are separate checkpoints.
-`dist/schemock-v0.1.0.html` is the self-contained app; `dist/schemock-v0.1.0-data.tar.gz` holds the format, examples and migration fixtures; `dist/SHA256SUMS` records their exact bytes.
-After downloading the release, verify its checksums, open the HTML with Chrome (`file://`), and choose a separate JSON with **新しい図を開く**.
-No server, network, runtime dependency installation, login, agent, local storage or dotfiles checkout is needed to edit.
-Only desktop Chrome is supported in 0.1.0.
+このチェックアウトには未公開のリリース候補が含まれています。
+公開と、それを利用するスキルの切り替えは別々の確認事項です。
+`dist/schemock-v0.1.0.html`は単体で動作するアプリ、`dist/schemock-v0.1.0-data.tar.gz`はフォーマット、サンプル、移行用フィクスチャを収めたアーカイブ、`dist/SHA256SUMS`はそれらのファイルのチェックサムです。
+リリースをダウンロードしたらチェックサムを確認し、ChromeでHTMLを開き（`file://`）、**新しい図を開く**から別のJSONを選択してください。
+編集にサーバー、ネットワーク、実行時の依存関係のインストール、ログイン、エージェント、ローカルストレージ、dotfilesのチェックアウトは必要ありません。
+0.1.0でサポートするブラウザはデスクトップ版Chromeのみです。
 
-Direct edits include position/size/group scaling, labels/newlines/size/colors, route points and every cubic control point, dependency deletion, history and per-variant reset.
-**保存状態を復元** checks the same figure/revision/reset basis; use **新しい図を開く** for a different figure or structural revision.
-JSON saves all variants; PNG saves only the selected composition at twice its frame dimensions, without handles or editor decorations.
-A native save is complete only after close. Download fallback reports a request: check the resulting file yourself; Chrome may limit repeated download requests.
-Cancel/failure preserves work; edits made while saving remain unsaved. Incomplete fields export the last valid values with a notice; confirm IME before saving.
-Use the explicit legacy migration section for either old v1 format, select its family, retain the original and save a separate v2 JSON.
-The app never sends files to an agent. An intermediate export does not mean final adoption.
+位置・サイズ・グループの拡大縮小、ラベル・改行・文字サイズ・色、経路点とすべての3次ベジェ制御点の編集、依存関係を伴う削除、履歴操作、バリアントごとのリセットができます。
+**保存状態を復元**は、同じ図・リビジョン・リセット基準であることを確認します。
+別の図や構造が変わったリビジョンには**新しい図を開く**を使ってください。
+JSONにはすべてのバリアントを保存し、PNGには選択中の構図のみをフレームの縦横2倍のサイズで保存します。ハンドルやエディタの装飾は含まれません。
+ネイティブの保存処理は、ファイルを閉じて初めて完了します。
+ダウンロード方式へのフォールバックでは要求を受け付けたことが通知されるため、生成されたファイルを自身で確認してください。Chromeが連続したダウンロード要求を制限する場合もあります。
+キャンセルや失敗時にも作業内容は保持されます。保存中に行った編集は未保存のままです。
+入力が未完了のフィールドは、最後に有効だった値で出力され、その旨が通知されます。保存前にIMEの入力を確定してください。
+旧v1形式を移行する場合は、専用の移行セクションで形式の種類を選択し、元ファイルを残して別のv2 JSONとして保存してください。
+アプリがファイルをエージェントに送信することはありません。途中で出力したことは、最終的な採用を意味しません。
 
-## Development (Node >=22, installed Chrome)
+## 開発（Node >=22、Chromeのインストールが必要）
 
-There are no npm dependencies and no install step.
+npmの依存パッケージやインストール手順はありません。
 
 ```fish
 npm test
@@ -29,11 +35,14 @@ npm run preview -- --input examples/node-edge.json --output-dir /tmp/schemock-pr
 npm run verify:release
 ```
 
-`npm test` checks pure logic and the built single HTML in network-disabled real headless Chrome with actual JSON/PNG downloads, public UI, failure injection and handoff exercises.
-Chrome absence or required test failure is fatal; native save-dialog and actual OS IME verification are separate manual checks documented in [releasing](docs/releasing.md).
-Generated `dist/` and `artifacts/` are ignored. Source modules are bundled locally; runtime imports/CDNs/data fetches are absent.
+`npm test`は、純粋なロジックとビルド済みの単一HTMLを検証します。
+ネットワークを無効にした実際のヘッドレスChromeで、JSON・PNGの実ダウンロード、公開UI、障害注入、引き継ぎの演習も検証します。
+Chromeがない場合や必須テストが失敗した場合、テストは失敗します。
+ネイティブの保存ダイアログと実際のOS上のIMEの確認は別途手動で行います。手順は[リリース手順](docs/releasing.md)を参照してください。
+生成される`dist/`と`artifacts/`はGitの管理対象外です。
+ソースモジュールはローカルでバンドルされ、実行時のインポート、CDN、データ取得はありません。
 
-Read [data format v2](docs/data-format-v2.md), [agent workflow and both exercises](docs/agent-workflow.md), [legacy migration](docs/migration-v1.md), and [release checks](docs/releasing.md).
-Schemas supplement runtime reference/structure checks; they are not a substitute for them.
-See [purpose, architecture and simplification decisions](docs/architecture.md) for responsibilities, data flow and the contracts behind the design.
-Sources/fixtures adapted from dotfiles-public PR #36 head `570535453ec3335cf76b310b8ae604aa4ab3c2ff`; all app development and browser validation now run independently here.
+[データフォーマットv2](docs/data-format-v2.md)、[エージェントとのワークフローと2つの演習](docs/agent-workflow.md)、[旧形式からの移行](docs/migration-v1.md)、[リリース時の確認](docs/releasing.md)を参照してください。
+スキーマは実行時の参照・構造チェックを補完するものであり、代わりにはなりません。
+責任分担、データの流れ、設計の前提となる契約については、[目的・アーキテクチャ・簡素化に関する判断](docs/architecture.md)を参照してください。
+ソースとフィクスチャはdotfiles-public PR #36のhead `570535453ec3335cf76b310b8ae604aa4ab3c2ff`から適応したものです。現在はアプリの開発とブラウザでの検証をすべてこのリポジトリで独立して行っています。
