@@ -104,7 +104,8 @@ Native input undo, caret, focus, line breaks and IME are retained.
 Incomplete fields stay raw; only last valid values enter JSON, with a save notice.
 Unfinished fields remain with their variant and object across selection changes and keep the unsaved guard active even when hidden.
 Correction clears that field's draft; deletion clears drafts for removed objects, reset clears the selected variant's drafts, and an explicitly accepted open/restore discards all drafts.
-Display rounds to at most two decimals; unchanged point components retain original Number precision.
+Fields initially display at most two decimals; entered text remains unchanged on blur to preserve native input undo.
+Unchanged point components retain original Number precision.
 
 JSON captures all variants; PNG captures the selected variant without handles, guides or selection styling.
 Both capture at operation start, use the same renderer, and serialize saves.

@@ -105,11 +105,7 @@ function reflect(e){
 $('editor').onsubmit=e=>e.preventDefault();$('editor').addEventListener('input',reflect);
 $('editor').addEventListener('compositionstart',()=>{composing=true;epoch++;buttons();});
 $('editor').addEventListener('compositionend',e=>{composing=false;reflect(e);});
-$('editor').addEventListener('focusout',e=>{
- session.endField();const c=e.target,o=find();if(!o||composing||c.getAttribute('aria-invalid')==='true')return;
- if(['x','y','width','height','fontSize'].includes(c.id))c.value=displayNumber(o[c.id]??1);
- if(c.id==='points')c.value=displayPoints(o.points??o.waypoints??[]);
-});
+$('editor').addEventListener('focusout',()=>session.endField());
 $('selection').onchange=()=>{epoch++;session.endField();session.selected=$('selection').value;render();form();buttons();};
 $('variant').onchange=()=>{epoch++;session.switchVariant($('variant').value);refresh();};
 for(const action of ['undo','redo','reset'])$(action).onclick=()=>{
