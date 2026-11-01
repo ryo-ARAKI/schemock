@@ -1,0 +1,498 @@
+{
+  "format": "schemock",
+  "schema_version": 2,
+  "diagram_kind": "node-edge",
+  "figure_id": "roundtrip-node-edge",
+  "base_revision": "r1",
+  "selected_variant_id": "a",
+  "coordinate_system": {
+    "origin": "top-left",
+    "x_axis": "right",
+    "y_axis": "down",
+    "width": 800,
+    "height": 480,
+    "unit": "draft-unit"
+  },
+  "variants": [
+    {
+      "id": "a",
+      "title": "A · 横の読み順",
+      "initial": {
+        "groups": [
+          {
+            "id": "process",
+            "x": 40,
+            "y": 50,
+            "width": 650,
+            "height": 300
+          }
+        ],
+        "elements": [
+          {
+            "id": "input",
+            "group_id": "process",
+            "x": 40,
+            "y": 100,
+            "width": 150,
+            "height": 80
+          },
+          {
+            "id": "select",
+            "group_id": "process",
+            "x": 270,
+            "y": 100,
+            "width": 150,
+            "height": 80
+          },
+          {
+            "id": "unused",
+            "group_id": null,
+            "x": 710,
+            "y": 150,
+            "width": 70,
+            "height": 80
+          }
+        ],
+        "labels": [
+          {
+            "id": "input-text",
+            "owner_id": "input",
+            "x": 75,
+            "y": 40,
+            "text": "入力\nInput",
+            "fontSize": 26
+          },
+          {
+            "id": "select-text",
+            "owner_id": "select",
+            "x": 75,
+            "y": 40,
+            "text": "選択\nSelect",
+            "fontSize": 26
+          },
+          {
+            "id": "unused-text",
+            "owner_id": "unused",
+            "x": 35,
+            "y": 40,
+            "text": "未使用",
+            "fontSize": 20
+          },
+          {
+            "id": "route-text",
+            "owner_id": null,
+            "x": 410.123456789,
+            "y": 390.987654321,
+            "text": "処理の方向",
+            "fontSize": 24
+          }
+        ],
+        "connections": [
+          {
+            "id": "input-select",
+            "from": {
+              "element_id": "input",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "select",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "select-unused",
+            "from": {
+              "element_id": "select",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "unused",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          }
+        ],
+        "constraints": [
+          {
+            "id": "same-row",
+            "kind": "align-y",
+            "ids": [
+              "input",
+              "select"
+            ]
+          },
+          {
+            "id": "enclosure",
+            "kind": "inside",
+            "ids": [
+              "input",
+              "select"
+            ],
+            "group_id": "process"
+          }
+        ]
+      },
+      "current": {
+        "groups": [
+          {
+            "id": "process",
+            "x": 40,
+            "y": 50,
+            "width": 650,
+            "height": 300
+          }
+        ],
+        "elements": [
+          {
+            "id": "input",
+            "group_id": "process",
+            "x": 40,
+            "y": 100,
+            "width": 150,
+            "height": 80
+          },
+          {
+            "id": "select",
+            "group_id": "process",
+            "x": 270,
+            "y": 100,
+            "width": 150,
+            "height": 80
+          },
+          {
+            "id": "unused",
+            "group_id": null,
+            "x": 710,
+            "y": 150,
+            "width": 70,
+            "height": 80
+          }
+        ],
+        "labels": [
+          {
+            "id": "input-text",
+            "owner_id": "input",
+            "x": 75,
+            "y": 40,
+            "text": "入力\nInput",
+            "fontSize": 26
+          },
+          {
+            "id": "select-text",
+            "owner_id": "select",
+            "x": 75,
+            "y": 40,
+            "text": "選択\nSelect",
+            "fontSize": 26
+          },
+          {
+            "id": "unused-text",
+            "owner_id": "unused",
+            "x": 35,
+            "y": 40,
+            "text": "未使用",
+            "fontSize": 20
+          },
+          {
+            "id": "route-text",
+            "owner_id": null,
+            "x": 410.123456789,
+            "y": 390.987654321,
+            "text": "処理の方向",
+            "fontSize": 24
+          }
+        ],
+        "connections": [
+          {
+            "id": "input-select",
+            "from": {
+              "element_id": "input",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "select",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "select-unused",
+            "from": {
+              "element_id": "select",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "unused",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          }
+        ],
+        "constraints": [
+          {
+            "id": "same-row",
+            "kind": "align-y",
+            "ids": [
+              "input",
+              "select"
+            ]
+          },
+          {
+            "id": "enclosure",
+            "kind": "inside",
+            "ids": [
+              "input",
+              "select"
+            ],
+            "group_id": "process"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b",
+      "title": "B · 縦の読み順",
+      "initial": {
+        "groups": [
+          {
+            "id": "process",
+            "x": 70,
+            "y": 70,
+            "width": 650,
+            "height": 340
+          }
+        ],
+        "elements": [
+          {
+            "id": "input",
+            "group_id": "process",
+            "x": 40,
+            "y": 100,
+            "width": 150,
+            "height": 80
+          },
+          {
+            "id": "select",
+            "group_id": "process",
+            "x": 40,
+            "y": 210,
+            "width": 150,
+            "height": 80
+          },
+          {
+            "id": "unused",
+            "group_id": null,
+            "x": 710,
+            "y": 150,
+            "width": 70,
+            "height": 80
+          }
+        ],
+        "labels": [
+          {
+            "id": "input-text",
+            "owner_id": "input",
+            "x": 75,
+            "y": 40,
+            "text": "入力\nInput",
+            "fontSize": 26
+          },
+          {
+            "id": "select-text",
+            "owner_id": "select",
+            "x": 75,
+            "y": 40,
+            "text": "選択\nSelect",
+            "fontSize": 26
+          },
+          {
+            "id": "unused-text",
+            "owner_id": "unused",
+            "x": 35,
+            "y": 40,
+            "text": "未使用",
+            "fontSize": 20
+          },
+          {
+            "id": "route-text",
+            "owner_id": null,
+            "x": 410.123456789,
+            "y": 390.987654321,
+            "text": "処理の方向",
+            "fontSize": 24
+          }
+        ],
+        "connections": [
+          {
+            "id": "input-select",
+            "from": {
+              "element_id": "input",
+              "anchor": "south"
+            },
+            "to": {
+              "element_id": "select",
+              "anchor": "north"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "select-unused",
+            "from": {
+              "element_id": "select",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "unused",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          }
+        ],
+        "constraints": [
+          {
+            "id": "same-row",
+            "kind": "align-y",
+            "ids": [
+              "input",
+              "select"
+            ]
+          },
+          {
+            "id": "enclosure",
+            "kind": "inside",
+            "ids": [
+              "input",
+              "select"
+            ],
+            "group_id": "process"
+          }
+        ]
+      },
+      "current": {
+        "groups": [
+          {
+            "id": "process",
+            "x": 70,
+            "y": 70,
+            "width": 650,
+            "height": 340
+          }
+        ],
+        "elements": [
+          {
+            "id": "input",
+            "group_id": "process",
+            "x": 40,
+            "y": 100,
+            "width": 150,
+            "height": 80
+          },
+          {
+            "id": "select",
+            "group_id": "process",
+            "x": 40,
+            "y": 210,
+            "width": 150,
+            "height": 80
+          },
+          {
+            "id": "unused",
+            "group_id": null,
+            "x": 710,
+            "y": 150,
+            "width": 70,
+            "height": 80
+          }
+        ],
+        "labels": [
+          {
+            "id": "input-text",
+            "owner_id": "input",
+            "x": 75,
+            "y": 40,
+            "text": "入力\nInput",
+            "fontSize": 26
+          },
+          {
+            "id": "select-text",
+            "owner_id": "select",
+            "x": 75,
+            "y": 40,
+            "text": "選択\nSelect",
+            "fontSize": 26
+          },
+          {
+            "id": "unused-text",
+            "owner_id": "unused",
+            "x": 35,
+            "y": 40,
+            "text": "未使用",
+            "fontSize": 20
+          },
+          {
+            "id": "route-text",
+            "owner_id": null,
+            "x": 410.123456789,
+            "y": 390.987654321,
+            "text": "処理の方向",
+            "fontSize": 24
+          }
+        ],
+        "connections": [
+          {
+            "id": "input-select",
+            "from": {
+              "element_id": "input",
+              "anchor": "south"
+            },
+            "to": {
+              "element_id": "select",
+              "anchor": "north"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "select-unused",
+            "from": {
+              "element_id": "select",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "unused",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          }
+        ],
+        "constraints": [
+          {
+            "id": "same-row",
+            "kind": "align-y",
+            "ids": [
+              "input",
+              "select"
+            ]
+          },
+          {
+            "id": "enclosure",
+            "kind": "inside",
+            "ids": [
+              "input",
+              "select"
+            ],
+            "group_id": "process"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,593 @@
+{
+  "format": "schemock",
+  "schema_version": 2,
+  "diagram_kind": "spectrum",
+  "figure_id": "roundtrip-spectrum",
+  "base_revision": "r2",
+  "selected_variant_id": "a",
+  "coordinate_system": {
+    "origin": "top-left",
+    "x_axis": "right",
+    "y_axis": "down",
+    "width": 800,
+    "height": 480,
+    "unit": "draft-unit"
+  },
+  "variants": [
+    {
+      "id": "a",
+      "title": "A · 左の領域を強調",
+      "initial": {
+        "paths": [
+          {
+            "id": "profile",
+            "type": "cubic",
+            "points": [
+              {
+                "x": 100,
+                "y": 300
+              },
+              {
+                "x": 150.123456789,
+                "y": 200.987654321
+              },
+              {
+                "x": 200,
+                "y": 120
+              },
+              {
+                "x": 300,
+                "y": 140
+              },
+              {
+                "x": 450,
+                "y": 170
+              },
+              {
+                "x": 550,
+                "y": 250
+              },
+              {
+                "x": 700,
+                "y": 330
+              }
+            ],
+            "width": 4,
+            "dash": false,
+            "directed": false,
+            "stroke": "navy"
+          },
+          {
+            "id": "axis-x",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 70,
+                "y": 370
+              },
+              {
+                "x": 740,
+                "y": 370
+              }
+            ],
+            "width": 2,
+            "dash": false,
+            "directed": true,
+            "stroke": "black"
+          },
+          {
+            "id": "axis-y",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 70,
+                "y": 370
+              },
+              {
+                "x": 70,
+                "y": 60
+              }
+            ],
+            "width": 2,
+            "dash": false,
+            "directed": true,
+            "stroke": "black"
+          },
+          {
+            "id": "guide",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 400,
+                "y": 180
+              },
+              {
+                "x": 650,
+                "y": 290
+              }
+            ],
+            "width": 2,
+            "dash": true,
+            "directed": false,
+            "stroke": "gray"
+          },
+          {
+            "id": "transfer",
+            "type": "cubic",
+            "points": [
+              {
+                "x": 300,
+                "y": 310
+              },
+              {
+                "x": 400,
+                "y": 290
+              },
+              {
+                "x": 500,
+                "y": 290
+              },
+              {
+                "x": 600,
+                "y": 310
+              }
+            ],
+            "width": 3,
+            "dash": false,
+            "directed": true,
+            "stroke": "eastern"
+          }
+        ],
+        "regions": [
+          {
+            "id": "band",
+            "x": 90,
+            "y": 90,
+            "width": 280,
+            "height": 260,
+            "fill": "#eef5fa"
+          }
+        ],
+        "labels": [
+          {
+            "id": "profile-text",
+            "x": 430,
+            "y": 90,
+            "text": "定性プロファイル\nProfile",
+            "fontSize": 26
+          },
+          {
+            "id": "x-text",
+            "x": 720,
+            "y": 410,
+            "text": "位置 x",
+            "fontSize": 24
+          },
+          {
+            "id": "y-text",
+            "x": 85,
+            "y": 35,
+            "text": "強度",
+            "fontSize": 24
+          },
+          {
+            "id": "transfer-text",
+            "x": 450,
+            "y": 340,
+            "text": "移送\nTransfer",
+            "fontSize": 24,
+            "fill": "eastern"
+          }
+        ]
+      },
+      "current": {
+        "paths": [
+          {
+            "id": "profile",
+            "type": "cubic",
+            "points": [
+              {
+                "x": 100,
+                "y": 300
+              },
+              {
+                "x": 165.123456789,
+                "y": 200.987654321
+              },
+              {
+                "x": 200,
+                "y": 120
+              },
+              {
+                "x": 300,
+                "y": 140
+              },
+              {
+                "x": 450,
+                "y": 170
+              },
+              {
+                "x": 550,
+                "y": 250
+              },
+              {
+                "x": 700,
+                "y": 330
+              }
+            ],
+            "width": 4,
+            "dash": false,
+            "directed": false,
+            "stroke": "navy"
+          },
+          {
+            "id": "axis-x",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 70,
+                "y": 370
+              },
+              {
+                "x": 740,
+                "y": 370
+              }
+            ],
+            "width": 2,
+            "dash": false,
+            "directed": true,
+            "stroke": "black"
+          },
+          {
+            "id": "axis-y",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 70,
+                "y": 370
+              },
+              {
+                "x": 70,
+                "y": 60
+              }
+            ],
+            "width": 2,
+            "dash": false,
+            "directed": true,
+            "stroke": "black"
+          },
+          {
+            "id": "transfer",
+            "type": "cubic",
+            "points": [
+              {
+                "x": 300,
+                "y": 310
+              },
+              {
+                "x": 400,
+                "y": 290
+              },
+              {
+                "x": 500,
+                "y": 280.123456789
+              },
+              {
+                "x": 600,
+                "y": 310
+              }
+            ],
+            "width": 3,
+            "dash": false,
+            "directed": true,
+            "stroke": "eastern"
+          }
+        ],
+        "regions": [
+          {
+            "id": "band",
+            "x": 90,
+            "y": 90,
+            "width": 295.123456789,
+            "height": 260,
+            "fill": "#eef5fa"
+          }
+        ],
+        "labels": [
+          {
+            "id": "profile-text",
+            "x": 440.123456789,
+            "y": 90,
+            "text": "定性形状\nProfile",
+            "fontSize": 26,
+            "fill": "blue"
+          },
+          {
+            "id": "x-text",
+            "x": 720,
+            "y": 410,
+            "text": "位置 x",
+            "fontSize": 24
+          },
+          {
+            "id": "y-text",
+            "x": 85,
+            "y": 35,
+            "text": "強度",
+            "fontSize": 24
+          },
+          {
+            "id": "transfer-text",
+            "x": 450,
+            "y": 340,
+            "text": "移送\nTransfer",
+            "fontSize": 24,
+            "fill": "eastern"
+          }
+        ]
+      }
+    },
+    {
+      "id": "b",
+      "title": "B · 右の領域を強調",
+      "initial": {
+        "paths": [
+          {
+            "id": "profile",
+            "type": "cubic",
+            "points": [
+              {
+                "x": 100,
+                "y": 300
+              },
+              {
+                "x": 150.123456789,
+                "y": 200.987654321
+              },
+              {
+                "x": 200,
+                "y": 120
+              },
+              {
+                "x": 300,
+                "y": 140
+              },
+              {
+                "x": 450,
+                "y": 170
+              },
+              {
+                "x": 550,
+                "y": 250
+              },
+              {
+                "x": 700,
+                "y": 330
+              }
+            ],
+            "width": 4,
+            "dash": false,
+            "directed": false,
+            "stroke": "navy"
+          },
+          {
+            "id": "axis-x",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 70,
+                "y": 370
+              },
+              {
+                "x": 740,
+                "y": 370
+              }
+            ],
+            "width": 2,
+            "dash": false,
+            "directed": true,
+            "stroke": "black"
+          },
+          {
+            "id": "axis-y",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 70,
+                "y": 370
+              },
+              {
+                "x": 70,
+                "y": 60
+              }
+            ],
+            "width": 2,
+            "dash": false,
+            "directed": true,
+            "stroke": "black"
+          },
+          {
+            "id": "guide",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 400,
+                "y": 180
+              },
+              {
+                "x": 650,
+                "y": 290
+              }
+            ],
+            "width": 2,
+            "dash": true,
+            "directed": false,
+            "stroke": "gray"
+          }
+        ],
+        "regions": [
+          {
+            "id": "band",
+            "x": 370,
+            "y": 90,
+            "width": 300,
+            "height": 260,
+            "fill": "#f8eeee"
+          }
+        ],
+        "labels": [
+          {
+            "id": "profile-text",
+            "x": 430,
+            "y": 120,
+            "text": "定性プロファイル\nProfile",
+            "fontSize": 26
+          },
+          {
+            "id": "x-text",
+            "x": 720,
+            "y": 410,
+            "text": "位置 x",
+            "fontSize": 24
+          },
+          {
+            "id": "y-text",
+            "x": 85,
+            "y": 35,
+            "text": "強度",
+            "fontSize": 24
+          }
+        ]
+      },
+      "current": {
+        "paths": [
+          {
+            "id": "profile",
+            "type": "cubic",
+            "points": [
+              {
+                "x": 100,
+                "y": 300
+              },
+              {
+                "x": 150.123456789,
+                "y": 200.987654321
+              },
+              {
+                "x": 200,
+                "y": 120
+              },
+              {
+                "x": 300,
+                "y": 140
+              },
+              {
+                "x": 450,
+                "y": 170
+              },
+              {
+                "x": 550,
+                "y": 250
+              },
+              {
+                "x": 700,
+                "y": 330
+              }
+            ],
+            "width": 4,
+            "dash": false,
+            "directed": false,
+            "stroke": "navy"
+          },
+          {
+            "id": "axis-x",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 70,
+                "y": 370
+              },
+              {
+                "x": 740,
+                "y": 370
+              }
+            ],
+            "width": 2,
+            "dash": false,
+            "directed": true,
+            "stroke": "black"
+          },
+          {
+            "id": "axis-y",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 70,
+                "y": 370
+              },
+              {
+                "x": 70,
+                "y": 60
+              }
+            ],
+            "width": 2,
+            "dash": false,
+            "directed": true,
+            "stroke": "black"
+          },
+          {
+            "id": "guide",
+            "type": "polyline",
+            "points": [
+              {
+                "x": 400,
+                "y": 180
+              },
+              {
+                "x": 650,
+                "y": 290
+              }
+            ],
+            "width": 2,
+            "dash": true,
+            "directed": false,
+            "stroke": "gray"
+          }
+        ],
+        "regions": [
+          {
+            "id": "band",
+            "x": 370,
+            "y": 90,
+            "width": 300,
+            "height": 260,
+            "fill": "#f8eeee"
+          }
+        ],
+        "labels": [
+          {
+            "id": "profile-text",
+            "x": 430,
+            "y": 120,
+            "text": "別案を保持\nKeep B",
+            "fontSize": 26
+          },
+          {
+            "id": "x-text",
+            "x": 720,
+            "y": 410,
+            "text": "位置 x",
+            "fontSize": 24
+          },
+          {
+            "id": "y-text",
+            "x": 85,
+            "y": 35,
+            "text": "強度",
+            "fontSize": 24
+          }
+        ]
+      }
+    }
+  ]
+}

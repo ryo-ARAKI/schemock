@@ -22,6 +22,16 @@ Use installed Node >=22. There are no npm dependencies or install step.
 npm test
 ```
 
-The test command checks pure logic and builds the self-contained HTML.
+The test command checks pure logic, builds the self-contained HTML and runs
+network-disabled real Chrome tests with actual JSON/PNG downloads.
+Chrome is required and tests may not be skipped.
 Read [data format v2](docs/data-format-v2.md) and
 [legacy migration](docs/migration-v1.md).
+
+Read [agent workflow and both exercises](docs/agent-workflow.md) for repeated
+human and agent edits, structural revisions and adopted JSON to Typst.
+Create static previews with the same renderer:
+
+```fish
+npm run preview -- --input examples/roundtrip/node-edge/00-proposals.json --output-dir /tmp/schemock-previews
+```
