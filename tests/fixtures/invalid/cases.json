@@ -1,0 +1,18 @@
+[
+  {
+    "file": "node-edge-unknown-field.json",
+    "reason_path": "$.variants[0].current.labels[0].unexpected"
+  },
+  {
+    "file": "node-edge-duplicate-id.json",
+    "reason_path": "$.variants[0].current.labels[1].id"
+  },
+  {
+    "file": "spectrum-unknown-field.json",
+    "reason_path": "$.variants[0].current.labels[0].unexpected"
+  },
+  {
+    "file": "spectrum-duplicate-id.json",
+    "reason_path": "$.variants[0].current.labels[1].id"
+  }
+]

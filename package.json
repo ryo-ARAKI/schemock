@@ -1,0 +1,13 @@
+{
+  "name": "schemock",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test:unit": "node --test tests/unit/*.test.mjs",
+    "test": "npm run test:unit"
+  }
+}

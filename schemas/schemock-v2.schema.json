@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$ref": "node-edge-v2.schema.json"
+    },
+    {
+      "$ref": "spectrum-v2.schema.json"
+    }
+  ]
+}

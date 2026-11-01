@@ -1,0 +1,878 @@
+{
+  "schema_version": 2,
+  "figure_id": "generic-selection",
+  "base_revision": "r1",
+  "selected_variant_id": "horizontal",
+  "coordinate_system": {
+    "origin": "top-left",
+    "x_axis": "right",
+    "y_axis": "down",
+    "width": 960,
+    "height": 540,
+    "unit": "draft-unit"
+  },
+  "variants": [
+    {
+      "id": "horizontal",
+      "title": "A · 横の処理列",
+      "initial": {
+        "elements": [
+          {
+            "id": "stage-1",
+            "group_id": "cycle",
+            "x": 30,
+            "y": 90,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stage-2",
+            "group_id": "cycle",
+            "x": 250,
+            "y": 90,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stage-3",
+            "group_id": "cycle",
+            "x": 470,
+            "y": 90,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stop",
+            "group_id": null,
+            "x": 790,
+            "y": 150,
+            "width": 95,
+            "height": 90
+          }
+        ],
+        "labels": [
+          {
+            "id": "label-1",
+            "owner_id": "stage-1",
+            "x": 90,
+            "y": 45,
+            "text": "候補\nCandidates",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-2",
+            "owner_id": "stage-2",
+            "x": 90,
+            "y": 45,
+            "text": "選択\nSelect",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-3",
+            "owner_id": "stage-3",
+            "x": 90,
+            "y": 45,
+            "text": "更新\nUpdate",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-4",
+            "owner_id": "stop",
+            "x": 47.5,
+            "y": 45,
+            "text": "終了\nStop",
+            "fontSize": 30.9
+          },
+          {
+            "id": "group-label",
+            "owner_id": "cycle",
+            "x": 350,
+            "y": 25,
+            "text": "探索 / Search",
+            "fontSize": 30.9
+          },
+          {
+            "id": "edge-label",
+            "owner_id": null,
+            "x": 280,
+            "y": 280,
+            "text": "選択へ / select",
+            "fontSize": 30.9
+          },
+          {
+            "id": "loop-label",
+            "owner_id": null,
+            "x": 400,
+            "y": 430,
+            "text": "反復 / repeat",
+            "fontSize": 30.9
+          },
+          {
+            "id": "stop-label",
+            "owner_id": null,
+            "x": 770,
+            "y": 110,
+            "text": "停止条件",
+            "fontSize": 30.9
+          }
+        ],
+        "groups": [
+          {
+            "id": "cycle",
+            "x": 50,
+            "y": 60,
+            "width": 700,
+            "height": 310
+          }
+        ],
+        "connections": [
+          {
+            "id": "flow-12",
+            "from": {
+              "element_id": "stage-1",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "stage-2",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "flow-23",
+            "from": {
+              "element_id": "stage-2",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "stage-3",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "return",
+            "from": {
+              "element_id": "stage-3",
+              "anchor": "south"
+            },
+            "to": {
+              "element_id": "stage-1",
+              "anchor": "south"
+            },
+            "waypoints": [
+              {
+                "x": 610,
+                "y": 400
+              },
+              {
+                "x": 170,
+                "y": 400
+              }
+            ],
+            "directed": true
+          },
+          {
+            "id": "exit",
+            "from": {
+              "element_id": "stage-3",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "stop",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          }
+        ],
+        "constraints": [
+          {
+            "id": "row",
+            "kind": "align-y",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "equal",
+            "kind": "equal-size",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "spacing",
+            "kind": "equal-gap",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "contain",
+            "kind": "inside",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ],
+            "group_id": "cycle"
+          }
+        ]
+      },
+      "current": {
+        "elements": [
+          {
+            "id": "stage-1",
+            "group_id": "cycle",
+            "x": 30,
+            "y": 90,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stage-2",
+            "group_id": "cycle",
+            "x": 250,
+            "y": 90,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stage-3",
+            "group_id": "cycle",
+            "x": 470,
+            "y": 90,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stop",
+            "group_id": null,
+            "x": 790,
+            "y": 150,
+            "width": 95,
+            "height": 90
+          }
+        ],
+        "labels": [
+          {
+            "id": "label-1",
+            "owner_id": "stage-1",
+            "x": 90,
+            "y": 45,
+            "text": "候補\nCandidates",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-1",
+            "owner_id": "stage-2",
+            "x": 90,
+            "y": 45,
+            "text": "選択\nSelect",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-3",
+            "owner_id": "stage-3",
+            "x": 90,
+            "y": 45,
+            "text": "更新\nUpdate",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-4",
+            "owner_id": "stop",
+            "x": 47.5,
+            "y": 45,
+            "text": "終了\nStop",
+            "fontSize": 30.9
+          },
+          {
+            "id": "group-label",
+            "owner_id": "cycle",
+            "x": 350,
+            "y": 25,
+            "text": "探索 / Search",
+            "fontSize": 30.9
+          },
+          {
+            "id": "edge-label",
+            "owner_id": null,
+            "x": 280,
+            "y": 280,
+            "text": "選択へ / select",
+            "fontSize": 30.9
+          },
+          {
+            "id": "loop-label",
+            "owner_id": null,
+            "x": 400,
+            "y": 430,
+            "text": "反復 / repeat",
+            "fontSize": 30.9
+          },
+          {
+            "id": "stop-label",
+            "owner_id": null,
+            "x": 770,
+            "y": 110,
+            "text": "停止条件",
+            "fontSize": 30.9
+          }
+        ],
+        "groups": [
+          {
+            "id": "cycle",
+            "x": 50,
+            "y": 60,
+            "width": 700,
+            "height": 310
+          }
+        ],
+        "connections": [
+          {
+            "id": "flow-12",
+            "from": {
+              "element_id": "stage-1",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "stage-2",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "flow-23",
+            "from": {
+              "element_id": "stage-2",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "stage-3",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "return",
+            "from": {
+              "element_id": "stage-3",
+              "anchor": "south"
+            },
+            "to": {
+              "element_id": "stage-1",
+              "anchor": "south"
+            },
+            "waypoints": [
+              {
+                "x": 610,
+                "y": 400
+              },
+              {
+                "x": 170,
+                "y": 400
+              }
+            ],
+            "directed": true
+          },
+          {
+            "id": "exit",
+            "from": {
+              "element_id": "stage-3",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "stop",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          }
+        ],
+        "constraints": [
+          {
+            "id": "row",
+            "kind": "align-y",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "equal",
+            "kind": "equal-size",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "spacing",
+            "kind": "equal-gap",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "contain",
+            "kind": "inside",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ],
+            "group_id": "cycle"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vertical",
+      "title": "B · 縦の処理列",
+      "initial": {
+        "elements": [
+          {
+            "id": "stage-1",
+            "group_id": "cycle",
+            "x": 120,
+            "y": 70,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stage-2",
+            "group_id": "cycle",
+            "x": 120,
+            "y": 200,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stage-3",
+            "group_id": "cycle",
+            "x": 120,
+            "y": 330,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stop",
+            "group_id": null,
+            "x": 790,
+            "y": 370,
+            "width": 95,
+            "height": 90
+          }
+        ],
+        "labels": [
+          {
+            "id": "label-1",
+            "owner_id": "stage-1",
+            "x": 90,
+            "y": 45,
+            "text": "候補\nCandidates",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-2",
+            "owner_id": "stage-2",
+            "x": 90,
+            "y": 45,
+            "text": "選択\nSelect",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-3",
+            "owner_id": "stage-3",
+            "x": 90,
+            "y": 45,
+            "text": "更新\nUpdate",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-4",
+            "owner_id": "stop",
+            "x": 47.5,
+            "y": 45,
+            "text": "終了\nStop",
+            "fontSize": 30.9
+          },
+          {
+            "id": "group-label",
+            "owner_id": "cycle",
+            "x": 250,
+            "y": 25,
+            "text": "探索 / Search",
+            "fontSize": 30.9
+          },
+          {
+            "id": "edge-label",
+            "owner_id": null,
+            "x": 560,
+            "y": 220,
+            "text": "選択へ / select",
+            "fontSize": 30.9
+          },
+          {
+            "id": "loop-label",
+            "owner_id": null,
+            "x": 125,
+            "y": 280,
+            "text": "反復 / repeat",
+            "fontSize": 30.9
+          },
+          {
+            "id": "stop-label",
+            "owner_id": null,
+            "x": 800,
+            "y": 340,
+            "text": "停止条件",
+            "fontSize": 30.9
+          }
+        ],
+        "groups": [
+          {
+            "id": "cycle",
+            "x": 200,
+            "y": 40,
+            "width": 500,
+            "height": 430
+          }
+        ],
+        "connections": [
+          {
+            "id": "flow-12",
+            "from": {
+              "element_id": "stage-1",
+              "anchor": "south"
+            },
+            "to": {
+              "element_id": "stage-2",
+              "anchor": "north"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "flow-23",
+            "from": {
+              "element_id": "stage-2",
+              "anchor": "south"
+            },
+            "to": {
+              "element_id": "stage-3",
+              "anchor": "north"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "return",
+            "from": {
+              "element_id": "stage-3",
+              "anchor": "west"
+            },
+            "to": {
+              "element_id": "stage-1",
+              "anchor": "west"
+            },
+            "waypoints": [
+              {
+                "x": 250,
+                "y": 415
+              },
+              {
+                "x": 250,
+                "y": 155
+              }
+            ],
+            "directed": true
+          },
+          {
+            "id": "exit",
+            "from": {
+              "element_id": "stage-3",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "stop",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          }
+        ],
+        "constraints": [
+          {
+            "id": "row",
+            "kind": "align-x",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "equal",
+            "kind": "equal-size",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "spacing",
+            "kind": "equal-gap",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "contain",
+            "kind": "inside",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ],
+            "group_id": "cycle"
+          }
+        ]
+      },
+      "current": {
+        "elements": [
+          {
+            "id": "stage-1",
+            "group_id": "cycle",
+            "x": 120,
+            "y": 70,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stage-2",
+            "group_id": "cycle",
+            "x": 120,
+            "y": 200,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stage-3",
+            "group_id": "cycle",
+            "x": 120,
+            "y": 330,
+            "width": 180,
+            "height": 90
+          },
+          {
+            "id": "stop",
+            "group_id": null,
+            "x": 790,
+            "y": 370,
+            "width": 95,
+            "height": 90
+          }
+        ],
+        "labels": [
+          {
+            "id": "label-1",
+            "owner_id": "stage-1",
+            "x": 90,
+            "y": 45,
+            "text": "候補\nCandidates",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-2",
+            "owner_id": "stage-2",
+            "x": 90,
+            "y": 45,
+            "text": "選択\nSelect",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-3",
+            "owner_id": "stage-3",
+            "x": 90,
+            "y": 45,
+            "text": "更新\nUpdate",
+            "fontSize": 30.9
+          },
+          {
+            "id": "label-4",
+            "owner_id": "stop",
+            "x": 47.5,
+            "y": 45,
+            "text": "終了\nStop",
+            "fontSize": 30.9
+          },
+          {
+            "id": "group-label",
+            "owner_id": "cycle",
+            "x": 250,
+            "y": 25,
+            "text": "探索 / Search",
+            "fontSize": 30.9
+          },
+          {
+            "id": "edge-label",
+            "owner_id": null,
+            "x": 560,
+            "y": 220,
+            "text": "選択へ / select",
+            "fontSize": 30.9
+          },
+          {
+            "id": "loop-label",
+            "owner_id": null,
+            "x": 125,
+            "y": 280,
+            "text": "反復 / repeat",
+            "fontSize": 30.9
+          },
+          {
+            "id": "stop-label",
+            "owner_id": null,
+            "x": 800,
+            "y": 340,
+            "text": "停止条件",
+            "fontSize": 30.9
+          }
+        ],
+        "groups": [
+          {
+            "id": "cycle",
+            "x": 200,
+            "y": 40,
+            "width": 500,
+            "height": 430
+          }
+        ],
+        "connections": [
+          {
+            "id": "flow-12",
+            "from": {
+              "element_id": "stage-1",
+              "anchor": "south"
+            },
+            "to": {
+              "element_id": "stage-2",
+              "anchor": "north"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "flow-23",
+            "from": {
+              "element_id": "stage-2",
+              "anchor": "south"
+            },
+            "to": {
+              "element_id": "stage-3",
+              "anchor": "north"
+            },
+            "waypoints": [],
+            "directed": true
+          },
+          {
+            "id": "return",
+            "from": {
+              "element_id": "stage-3",
+              "anchor": "west"
+            },
+            "to": {
+              "element_id": "stage-1",
+              "anchor": "west"
+            },
+            "waypoints": [
+              {
+                "x": 250,
+                "y": 415
+              },
+              {
+                "x": 250,
+                "y": 155
+              }
+            ],
+            "directed": true
+          },
+          {
+            "id": "exit",
+            "from": {
+              "element_id": "stage-3",
+              "anchor": "east"
+            },
+            "to": {
+              "element_id": "stop",
+              "anchor": "west"
+            },
+            "waypoints": [],
+            "directed": true
+          }
+        ],
+        "constraints": [
+          {
+            "id": "row",
+            "kind": "align-x",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "equal",
+            "kind": "equal-size",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "spacing",
+            "kind": "equal-gap",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ]
+          },
+          {
+            "id": "contain",
+            "kind": "inside",
+            "ids": [
+              "stage-1",
+              "stage-2",
+              "stage-3"
+            ],
+            "group_id": "cycle"
+          }
+        ]
+      }
+    }
+  ],
+  "format": "schemock",
+  "diagram_kind": "node-edge"
+}
