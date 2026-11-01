@@ -1,0 +1,62 @@
+{
+  "format": "schemock",
+  "schema_version": 2,
+  "diagram_kind": "node-edge",
+  "figure_id": "generic-selection",
+  "base_revision": "r1",
+  "coordinate_system": {
+    "origin": "top-left",
+    "x_axis": "right",
+    "y_axis": "down",
+    "width": 960,
+    "height": 540,
+    "unit": "draft-unit"
+  },
+  "selected_variant_id": "horizontal",
+  "variants": [
+    {
+      "id": "horizontal",
+      "title": "A · 横の処理列",
+      "initial": {
+        "elements": [],
+        "groups": [],
+        "labels": [
+          {
+            "id": "label",
+            "owner_id": null,
+            "x": 1.234567890123,
+            "y": 20,
+            "text": "label",
+            "fontSize": 12
+          }
+        ],
+        "connections": [],
+        "constraints": []
+      },
+      "current": {
+        "elements": [],
+        "groups": [],
+        "labels": [
+          {
+            "id": "label",
+            "owner_id": null,
+            "x": 1.234567890123,
+            "y": 20,
+            "text": "label",
+            "fontSize": 12
+          },
+          {
+            "id": "label",
+            "owner_id": null,
+            "x": 1.234567890123,
+            "y": 20,
+            "text": "label",
+            "fontSize": 12
+          }
+        ],
+        "connections": [],
+        "constraints": []
+      }
+    }
+  ]
+}

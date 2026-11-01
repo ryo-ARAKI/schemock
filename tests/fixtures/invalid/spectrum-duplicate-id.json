@@ -1,0 +1,55 @@
+{
+  "format": "schemock",
+  "schema_version": 2,
+  "diagram_kind": "spectrum",
+  "figure_id": "turbulence-spectrum",
+  "base_revision": "r2",
+  "coordinate_system": {
+    "origin": "top-left",
+    "x_axis": "right",
+    "y_axis": "down",
+    "width": 960,
+    "height": 540,
+    "unit": "draft-unit"
+  },
+  "selected_variant_id": "bands",
+  "variants": [
+    {
+      "id": "bands",
+      "title": "A · 3領域を背景の帯で示す",
+      "initial": {
+        "paths": [],
+        "regions": [],
+        "labels": [
+          {
+            "id": "label",
+            "x": 1.234567890123,
+            "y": 20,
+            "text": "label",
+            "fontSize": 12
+          }
+        ]
+      },
+      "current": {
+        "paths": [],
+        "regions": [],
+        "labels": [
+          {
+            "id": "label",
+            "x": 1.234567890123,
+            "y": 20,
+            "text": "label",
+            "fontSize": 12
+          },
+          {
+            "id": "label",
+            "x": 1.234567890123,
+            "y": 20,
+            "text": "label",
+            "fontSize": 12
+          }
+        ]
+      }
+    }
+  ]
+}
