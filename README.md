@@ -1,14 +1,18 @@
 # Schemock
 
-Document contracts for an offline scientific composition editor.
-Format v2 distinguishes diagram family, figure identity, structural revision,
-immutable reset states and editable current states for node/edge diagrams and
-qualitative spectra/profiles.
+One offline editor, separate diagram JSON. The editor supports node/edge
+diagrams and qualitative spectra/profiles in desktop Google Chrome.
+Scientific meaning, structural changes and final typesetting belong to the
+person and agent.
 
-Read [data format v2](docs/data-format-v2.md), the schemas in `schemas/`,
-and the independent, valid and invalid examples and fixtures.
-Runtime validation checks identity, references and retained structure in
-addition to the JSON schemas.
+## Run locally
+
+Build `dist/schemock-v0.1.0.html`, open it with Chrome using file://, and choose
+`examples/node-edge.json` or `examples/spectrum.json` with **新しい図を開く**.
+No server, network, runtime dependency installation or login is needed.
+JSON saves all variants; PNG saves the selected composition without editing aids.
+Native save completion, cancellation, OS IME and download requests require
+separate attention when verifying real desktop behavior.
 
 ## Development
 
@@ -18,9 +22,6 @@ Use installed Node >=22. There are no npm dependencies or install step.
 npm test
 ```
 
-## Legacy data
-
-[Explicit legacy migration](docs/migration-v1.md) covers both v1 families.
-`src/migrate.js` preserves identity, reset states, edits and deletion absences;
-missing initial states require the matching original JSON or known HTML.
-Legacy HTML is decoded as data and never executed.
+The test command checks pure logic and builds the self-contained HTML.
+Read [data format v2](docs/data-format-v2.md) and
+[legacy migration](docs/migration-v1.md).
