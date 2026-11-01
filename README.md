@@ -17,3 +17,10 @@ Use installed Node >=22. There are no npm dependencies or install step.
 ```fish
 npm test
 ```
+
+## Legacy data
+
+[Explicit legacy migration](docs/migration-v1.md) covers both v1 families.
+`src/migrate.js` preserves identity, reset states, edits and deletion absences;
+missing initial states require the matching original JSON or known HTML.
+Legacy HTML is decoded as data and never executed.

@@ -2,6 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {validateDocument, assertRestorable} from '../../src/document.js';
+import {migrateLegacy, extractInitial} from '../../src/migrate.js';
 const read=p=>JSON.parse(fs.readFileSync(new URL('../'+p,import.meta.url)));
 const example=k=>read('../examples/'+k+'.json');
 for(const kind of ['node-edge','spectrum']) {
@@ -26,13 +27,27 @@ for(const kind of ['node-edge','spectrum']) {
   else mutations.push(x=>x.variants[0].current.regions[0].height=0,x=>x.variants[0].current.paths[0].width++,x=>x.variants[0].current.paths[0].dash=!x.variants[0].current.paths[0].dash,x=>x.variants[0].initial.paths[0].points.splice(1,2));
   for(const mutate of mutations){const x=example(kind);mutate(x);const before=structuredClone(x);assert.throws(()=>validateDocument(x),/\$/);assert.deepEqual(x,before);}
  });
-
+ test(kind+': explicit v1 migration preserves every state and requires missing base',()=>{
+  for(const mode of ['','-edited','-deleted','-empty','-needs-base']){
+   const old=read('fixtures/legacy-v1/'+kind+mode+'.json'),before=structuredClone(old),base=read('fixtures/legacy-v1/'+kind+'.json');
+   if(mode==='-needs-base')assert.throws(()=>migrateLegacy(old,kind));
+   const next=migrateLegacy(old,kind,base); assert.equal(next.schema_version,2); assert.equal(next.diagram_kind,kind);
+   assert.deepEqual(old,before); assert.deepEqual(next.variants.map(v=>v.current),old.variants.map(v=>v.current));
+   assert.deepEqual(next.variants.map(v=>v.initial),base.variants.map(v=>v.initial));
+   assert.throws(()=>migrateLegacy(old,kind==='node-edge'?'spectrum':'node-edge',base));
+  }
+ });
 }
-
+test('HTML initial extractor reads a JSON literal without executing code',()=>{
+ const d=example('node-edge'); assert.deepEqual(extractInitial('<script>const INITIAL = '+JSON.stringify(d)+';throw Error("never execute")</script>'),d);
+ assert.throws(()=>extractInitial('const INITIAL = (()=>alert(1))()'));
+});
 test('legacy default label ink remains family-specific without inserting overrides',async()=>{
  const {paint}=await import('../../src/colors.js');assert.equal(paint({},'fill','labels','spectrum'),'#203e50');assert.equal(paint({},'fill','labels','node-edge'),'#192d40');
 });
-
+test('migration rejects a base with mismatched variant titles',()=>{
+ const old=read('fixtures/legacy-v1/node-edge-needs-base.json'),base=read('fixtures/legacy-v1/node-edge.json');base.variants[0].title='different';assert.throws(()=>migrateLegacy(old,'node-edge',base),/title/);
+});
 test('fixed invalid fixtures report the expected path and preserve the input',()=>{
  for(const c of read('fixtures/invalid/cases.json')){const d=read('fixtures/invalid/'+c.file),before=structuredClone(d);assert.throws(()=>validateDocument(d),e=>e.message.startsWith(c.reason_path+':'));assert.deepEqual(d,before);}
 });
