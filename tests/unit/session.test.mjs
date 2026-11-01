@@ -3,6 +3,25 @@ import {Session, fingerprint} from '../../src/session.js';
 import {deleteSelection,resizeGroup} from '../../src/diagrams/node-edge.js';
 import {enteredPoints,displayPoints} from '../../src/forms.js';
 const example=k=>JSON.parse(fs.readFileSync(new URL('../../examples/'+k+'.json',import.meta.url)));
+test('editing isolates committed state and history from a retained mutation draft',()=>{
+ const s=new Session();s.open(example('node-edge'));const original=structuredClone(s.doc);let draft;
+ s.edit(d=>{draft=d;d.variants[0].current.labels[0].text='committed';});
+ draft.variants[0].current.labels[0].text='late mutation';
+ assert.equal(s.doc.variants[0].current.labels[0].text,'committed');
+ s.undo();assert.deepEqual(s.doc,original);s.redo();
+ assert.equal(s.doc.variants[0].current.labels[0].text,'committed');
+});
+test('rejected edits and JSON object-key ordering preserve chronological history',()=>{
+ const s=new Session();s.open(example('node-edge'));s.selected='label-1';
+ s.edit(d=>d.variants[0].current.labels[0].text='first');s.edit(d=>d.variants[0].current.labels[0].text='second');s.undo();
+ const before=structuredClone(s.doc),undo=structuredClone(s.undoStack),redo=structuredClone(s.redoStack),token=s.readToken();
+ for(const mutate of [d=>{d.variants[0].current.labels[0].x=Infinity;},d=>{d.variants[0].current.labels[0].text='discard';throw Error('failed edit');}]){
+  assert.throws(()=>s.edit(mutate));assert.deepEqual(s.doc,before);assert.deepEqual(s.undoStack,undo);assert.deepEqual(s.redoStack,redo);assert.equal(s.selected,'label-1');assert.ok(s.isCurrent(token));
+ }
+ const reorder=o=>Array.isArray(o)?o.map(reorder):o&&typeof o==='object'?Object.fromEntries(Object.entries(o).reverse().map(([k,v])=>[k,reorder(v)])):o;
+ assert.equal(s.restore(reorder(before)),false);assert.deepEqual(s.undoStack,undo);assert.deepEqual(s.redoStack,redo);
+ s.redo();assert.equal(s.doc.variants[0].current.labels[0].text,'second');
+});
 test('continuous edits, noops, chronological variants, undo/redo and restoration',()=>{
  const s=new Session();s.open(example('node-edge'));const before=structuredClone(s.doc);
  s.edit(d=>d.variants[0].current.labels[0].text='a','field');s.edit(d=>d.variants[0].current.labels[0].text='ab','field');

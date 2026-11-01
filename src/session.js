@@ -7,7 +7,8 @@ export class Session {
  readToken(){return {generation:this.generation,sequence:++this.readSequence};}
  isCurrent(token){return token.generation===this.generation&&token.sequence===this.readSequence;}
  edit(mutate,group=null){
-  const before=clone(this.doc),next=clone(this.doc);mutate(next);validateDocument(next);
+  // Edits only mutate a draft; committed documents can also serve as history snapshots.
+  const before=this.doc,draft=clone(before);mutate(draft);const next=validateDocument(draft);
   if(same(before,next))return false;
   const entry=this.undoStack.at(-1);
   if(!group||this.field?.key!==group||this.field?.entry!==entry||this.redoStack.length){

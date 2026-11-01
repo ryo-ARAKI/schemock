@@ -13,7 +13,6 @@ export async function withBrowser({chrome, html, out}, check) {
   out = path.resolve(out);
   fs.mkdirSync(out, {recursive: true});
   const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-  const seenDownloads = new Map(fs.readdirSync(out).map(name => [name, fs.statSync(path.join(out, name)).mtimeMs]));
   const browser = spawn(chrome, ['--headless=new', '--no-sandbox', '--disable-gpu',
     '--no-first-run', '--no-default-browser-check', '--remote-debugging-pipe',
     '--user-data-dir=' + path.join(out, 'profile'), 'about:blank'],
@@ -21,7 +20,6 @@ export async function withBrowser({chrome, html, out}, check) {
   const closed=new Promise(resolve=>browser.once('close',resolve));
   let seq = 0, buffer = '', session, stopped, navigating=false;
   const pending = new Map(), errors = [], events = [];
-  browser.on('close',()=>{});
   function stop(error) {
     stopped = error;
     for (const {reject, timer} of pending.values()) { clearTimeout(timer); reject(error); }

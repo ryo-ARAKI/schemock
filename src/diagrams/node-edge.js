@@ -1,3 +1,4 @@
+import {retainedConstraints} from '../document.js';
 export function worldElement(scene,id){const e=scene.elements.find(o=>o.id===id),g=scene.groups.find(o=>o.id===e.group_id);return {...e,x:e.x+(g?.x??0),y:e.y+(g?.y??0)};}
 export function anchor(scene,a){const e=worldElement(scene,a.element_id),f={north:[.5,0],south:[.5,1],east:[1,.5],west:[0,.5],center:[.5,.5]}[a.anchor];return {x:e.x+f[0]*e.width,y:e.y+f[1]*e.height};}
 export function labelPosition(scene,l){if(l.owner_id===null)return l;const e=scene.elements.find(e=>e.id===l.owner_id),p=e?worldElement(scene,e.id):scene.groups.find(g=>g.id===l.owner_id);return {x:p.x+l.x,y:p.y+l.y};}
@@ -19,5 +20,5 @@ export function deletionScope(scene,id){
 export function deleteSelection(scene,id,initial){
  const removed=deletionScope(scene,id);
  for(const k of ['elements','groups','labels','connections'])scene[k]=scene[k].filter(o=>!removed.has(o.id));
- scene.constraints=initial.constraints.filter(c=>c.ids.every(id=>scene.elements.some(e=>e.id===id))&&(c.kind!=='inside'||scene.groups.some(g=>g.id===c.group_id)));
+ scene.constraints=retainedConstraints(scene,initial);
 }

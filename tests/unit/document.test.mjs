@@ -14,7 +14,7 @@ for(const kind of ['node-edge','spectrum']) {
  });
  test(kind+': exact restoration identity; new documents accepted independently',()=>{
   const d=example(kind);
-  for(const mutate of [x=>x.figure_id+='x',x=>x.base_revision+='x',x=>x.coordinate_system.width++,x=>x.variants[0].initial.labels[0].x++]){
+  for(const mutate of [x=>x.figure_id+='x',x=>x.base_revision+='x',x=>x.coordinate_system.width++,x=>x.variants[0].initial.labels[0].x++,x=>x.variants[0].initial.labels.reverse()]){
    const x=structuredClone(d); mutate(x); assert.throws(()=>assertRestorable(d,x));
   }
   const x=structuredClone(d); x.variants[0].current.labels[0].text='途中'; assert.doesNotThrow(()=>assertRestorable(d,x));

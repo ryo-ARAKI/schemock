@@ -1,4 +1,4 @@
-import {APP_VERSION,validateDocument,assertRestorable,categories,clone,same} from './document.js';
+import {APP_VERSION,validateDocument,assertRestorable,categories,clone} from './document.js';
 import {Session,fingerprint} from './session.js';
 import {DEFAULTS,TYPST_COLORS,namedColor,cssColor,defaultColors} from './colors.js';
 import {displayNumber,displayPoints,enteredNumber,enteredPoints} from './forms.js';

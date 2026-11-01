@@ -1,8 +1,13 @@
 import {safeColor,namedColor,DEFAULTS} from './colors.js';
 export const APP_VERSION='0.1.0';
 export const clone=x=>structuredClone(x);
-const canonical=o=>Array.isArray(o)?o.map(canonical):o&&typeof o==='object'?Object.fromEntries(Object.keys(o).sort().map(k=>[k,canonical(o[k])])):o;
-export const same=(a,b)=>JSON.stringify(canonical(a))===JSON.stringify(canonical(b));
+// JSON value equality: object key order is irrelevant; array order is significant.
+export function same(a,b){
+ if(a===b)return true;
+ if(!a||!b||typeof a!=='object'||typeof b!=='object'||Array.isArray(a)!==Array.isArray(b))return false;
+ const keys=Object.keys(a);
+ return keys.length===Object.keys(b).length&&keys.every(k=>Object.hasOwn(b,k)&&same(a[k],b[k]));
+}
 export const categories=kind=>kind==='node-edge'?['elements','groups','labels','connections']:['paths','regions','labels'];
 export const finite=n=>typeof n==='number'&&Number.isFinite(n)&&Math.abs(n)<1e7;
 const positive=n=>finite(n)&&n>0;
