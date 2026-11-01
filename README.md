@@ -35,4 +35,5 @@ Generated `dist/` and `artifacts/` are ignored. Source modules are bundled local
 
 Read [data format v2](docs/data-format-v2.md), [agent workflow and both exercises](docs/agent-workflow.md), [legacy migration](docs/migration-v1.md), and [release checks](docs/releasing.md).
 Schemas supplement runtime reference/structure checks; they are not a substitute for them.
+See [purpose, architecture and simplification decisions](docs/architecture.md) for responsibilities, data flow and the contracts behind the design.
 Sources/fixtures adapted from dotfiles-public PR #36 head `570535453ec3335cf76b310b8ae604aa4ab3c2ff`; all app development and browser validation now run independently here.
